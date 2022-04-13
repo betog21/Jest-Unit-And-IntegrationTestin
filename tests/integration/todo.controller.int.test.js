@@ -3,7 +3,8 @@ const app = require("../../app");
 const newTodo = require("../mock-data/new-todo.json");
 
 const endpointURL = "/todos/";
-let firstTodo;
+let firstTodo, newTodoId;
+const nonExistingTodoId = "5d5fff416bef3c07ecf11f77";
 
 describe(endpointURL, () => {
   test("GET " + endpointURL, async () => {
@@ -34,6 +35,7 @@ describe(endpointURL, () => {
     expect(response.statusCode).toBe(201);
     expect(response.body.title).toBe(newTodo.title);
     expect(response.body.done).toBe(newTodo.done);
+    newTodoId = response.body._id;
   });
 
   it(
@@ -48,4 +50,21 @@ describe(endpointURL, () => {
       });
     }
   );
+
+  it("PUT " + endpointURL, async () => {
+    const testData = { title: "Make integration test for PUT", done: true };
+    const res = await request(app)
+      .put(endpointURL + newTodoId)
+      .send(testData);
+    expect(res.statusCode).toBe(200);
+    expect(res.body.title).toBe(testData.title);
+    expect(res.body.done).toBe(testData.done);
+  });
+  it("should return 404 on PUT " + endpointURL, async () => {
+    const testData = { title: "Make integration test for PUT", done: true };
+    const res = await request(app)
+      .put(endpointURL + nonExistingTodoId)
+      .send(testData);
+    expect(res.statusCode).toBe(404);
+  });
 });

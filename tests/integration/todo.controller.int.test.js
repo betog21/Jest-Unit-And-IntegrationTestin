@@ -11,4 +11,17 @@ describe(endpointURL, () => {
     expect(response.body.title).toBe(newTodo.title);
     expect(response.body.done).toBe(newTodo.done);
   });
+
+  it(
+    "Should return error 500 on malformet data with POST " + endpointURL,
+    async () => {
+      const response = await request(app)
+        .post(endpointURL)
+        .send({ title: "Missing done property" });
+      expect(response.statusCode).toBe(500);
+      expect(response.body).toStrictEqual({
+        message: "Todo validation failed: done: Path `done` is required.",
+      });
+    }
+  );
 });

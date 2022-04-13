@@ -6,6 +6,7 @@ const allTodos = require("../mock-data/all-todos.json");
 
 TodoModel.create = jest.fn();
 TodoModel.find = jest.fn();
+TodoModel.findById = jest.fn();
 
 let req, res, next;
 
@@ -16,12 +17,17 @@ beforeEach(() => {
 });
 
 describe("TodoController.getTodos", () => {
+  describe("TodoController.getTodoById", () => {
+    it("should have a getTodoById", () => {
+      expect(typeof TodoController.getTodoById).toBe("function");
+    });
 
-  describe("TodoController.getTodoById",()=>{
-    it("should have a getTodoById", ()=>{
-      expect(typeof TodoController.getTodoById).toBe("function")
-    })
-  })
+    it("Should call TodoModel.findById with route parameters", async () => {
+      req.params.id = "62572cfd75d52221319061b6";
+      await TodoController.getTodoById(req, res, next);
+      expect(TodoModel.findById).toBeCalledWith("62572cfd75d52221319061b6");
+    });
+  });
 
   it("should have a getTodos function", () => {
     expect(typeof TodoController.getTodos).toBe("function");

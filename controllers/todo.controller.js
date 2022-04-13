@@ -20,7 +20,7 @@ exports.getTodos = async (req, res, next) => {
 
 exports.getTodoById = async (req, res, next) => {
   try {
-    const toDo = null;
+    const toDo = TodoModel.findById(req.params.id);
     res.status(200).json(toDo);
   } catch (error) {
     next(error);

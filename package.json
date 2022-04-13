@@ -1,0 +1,23 @@
+{
+  "name": "jest-unit-and-integrationtestin",
+  "version": "1.0.0",
+  "description": "Unit and integration testing with Jest First change on dev.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betog21/Jest-Unit-And-IntegrationTestin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betog21/Jest-Unit-And-IntegrationTestin/issues"
+  },
+  "homepage": "https://github.com/betog21/Jest-Unit-And-IntegrationTestin#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

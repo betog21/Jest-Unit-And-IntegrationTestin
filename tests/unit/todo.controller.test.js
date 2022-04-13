@@ -27,6 +27,14 @@ describe("TodoController.getTodos", () => {
       await TodoController.getTodoById(req, res, next);
       expect(TodoModel.findById).toBeCalledWith("62572cfd75d52221319061b6");
     });
+
+    it("Should return json body and response code 200", async () => {
+      TodoModel.findById.mockReturnValue(newTodo);
+      await TodoController.getTodoById(req, res, next);
+      expect(res.statusCode).toBe(200);
+      expect(res._getJSONData()).toStrictEqual(newTodo);
+      expect(res._isEndCalled()).toBeTruthy();
+    });
   });
 
   it("should have a getTodos function", () => {

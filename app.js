@@ -13,8 +13,4 @@ app.get("/", (req, res) => {
   res.json("Hello.");
 });
 
-// app.listen(3000, () => {
-//   // console.log("Server running.");
-// });
-
 module.exports = app;

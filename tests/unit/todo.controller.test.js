@@ -16,6 +16,13 @@ beforeEach(() => {
 });
 
 describe("TodoController.getTodos", () => {
+
+  describe("TodoController.getTodoById",()=>{
+    it("should have a getTodoById", ()=>{
+      expect(typeof TodoController.getTodoById).toBe("function")
+    })
+  })
+
   it("should have a getTodos function", () => {
     expect(typeof TodoController.getTodos).toBe("function");
   });
